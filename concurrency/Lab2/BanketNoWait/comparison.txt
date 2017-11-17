@@ -1,0 +1,13 @@
+** Comparison between Banket and BanketNoWait **
+
+In the first approach (Banket) any thread that is waiting for the pot to be filled cannot execute any 
+other action, whereas in the BanketNoWait implementation the threads can potentially execute other 
+actions while waiting for the pot to be filled.
+
+It can be stated that the Banket implementation blocks the threads until the resource is available and
+the BanketNoWait implementation allows the threads to execute the actions that have free resources 
+(but they will constantly pool for the resources status in order to try to execute their actions).
+
+In this case, Savages can only eat (single action) so both approaches give us a similar result. However,
+if the savages could perform more than one action the second approach would allow them to execute them 
+when some resources are not available.

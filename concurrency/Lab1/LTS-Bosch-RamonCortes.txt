@@ -1,0 +1,54 @@
+/* Homework: LTS & FSP
+*
+* Lab Subgrup: 12
+*
+* Name: Marti
+* Surname: Bosch
+*
+* Name: Cristian
+* Surname: Ramon-Cortes
+*
+*/
+
+/* Exercise 1: M&K 3.6 */
+const N = 5
+
+EAST = (arrive -> EAST).
+WEST = (leave -> WEST).
+DIRECTOR = (open -> close -> DIRECTOR).
+
+CONTROL = CLOSED[0],
+CLOSED[i:0..N] = (when (i==0) open -> OPENED[0]
+				  |when (i>0) leave -> CLOSED[i-1]
+				 ),
+OPENED[i:0..N] = (close -> CLOSED[i]
+				  |when (i<N) arrive -> OPENED[i+1]
+				  |when (i>0) leave -> OPENED[i-1]
+				 ).
+
+||MUSEUM = (EAST || WEST || DIRECTOR || CONTROL).
+
+
+/* Exercise 2: Time-out Client Server - Q1 */
+CLIENT = (call -> WAIT),
+WAIT = (answer -> continue -> CLIENT | timeout -> CLIENT).
+SERVER = (request -> service -> reply -> SERVER).
+
+||CLIENT_SERVER = (CLIENT || SERVER) /{call/request, answer/reply}.
+
+/* Exercise 2: Time-out Client Server - Q2 */
+/* The LTS Diagram composing CLIENT and SERVER shows that a deadlock is achieved when CLIENT times out (state 3).
+   A possible solution will be to also timeout the server (Exercise 2 - Q3)
+*/
+
+/* Exercise 2: Time-out Client Server - Q3 */
+CLIENT = (call -> WAIT),
+WAIT = (answer -> continue -> CLIENT | timeout -> CLIENT).
+SERVER = (request -> PROCESS | timeoutServer -> SERVER),
+PROCESS = (service -> REPLY | timeoutServer -> SERVER),
+REPLY = (reply -> SERVER | timeoutServer -> SERVER).
+
+||CLIENT_SERVER = (CLIENT || SERVER) /{call/request, answer/reply, timeout/timeoutServer}.
+
+
+/* end homework */

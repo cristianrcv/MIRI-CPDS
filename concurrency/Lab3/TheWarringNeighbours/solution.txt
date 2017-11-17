@@ -1,0 +1,43 @@
+const False = 0
+const True  = 1
+range Bool  = False..True
+set   BoolActions = {setTrue, setFalse, [False], [True]}
+
+BOOLVAR = VAL[False],
+VAL[v:Bool] = (setTrue  -> VAL[True]
+              |setFalse -> VAL[False]
+              |[v]      -> VAL[v]
+              ).
+
+||FLAGS = (flag1:BOOLVAR || flag2:BOOLVAR).
+
+NEIGHBOUR1 = (flag1.setTrue -> TEST),
+TEST       = (flag2[raised:Bool] ->
+                if(raised) then
+                   (flag1.setFalse -> NEIGHBOUR1)
+                else
+                   (enter -> exit -> flag1.setFalse -> NEIGHBOUR1)
+              )+{{flag1,flag2}.BoolActions}.
+
+NEIGHBOUR2 = (flag2.setTrue -> TEST),
+TEST       = (flag1[raised:Bool] -> 
+                if(raised) then
+                   (flag2.setFalse -> NEIGHBOUR2)
+                else
+                   (enter -> exit-> flag2.setFalse -> NEIGHBOUR2)
+              )+{{flag1,flag2}.BoolActions}.
+
+property MUTEX = (alice.enter -> alice.exit -> MUTEX | bob.enter -> bob.exit -> MUTEX).
+
+||FIELD = (alice:NEIGHBOUR1 || bob:NEIGHBOUR2 || {alice,bob}::FLAGS || MUTEX).
+
+progress ENTER1  = {alice.enter}  //NEIGBOUR 1 always gets to enter
+progress ENTER2  = {bob.enter}  //NEIGHBOUR 2 always gets to enter
+
+/* greedy neighbours - make setting the flags high priority - eagerness to enter*/
+
+||GREEDY = FIELD << {{alice,bob}.{flag1,flag2}.setTrue}.
+
+/* progress violations show situation where neither neighbour enters 
+*  each continually retests the lock
+*/
