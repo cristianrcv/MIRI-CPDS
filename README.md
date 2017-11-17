@@ -21,11 +21,11 @@ It was discontinued when the project ended and is no longer supported so you sho
 
 ## Authors
 - Concurrency
-        - Marti Bosch
-        - Cristian Ramon-Cortes
+ - Marti Bosch
+ - Cristian Ramon-Cortes
 
 - Distributed Systems
-        - Shiva Toutounchiavval
-        - Fernando Morales
-        - Cristian Ramon-Cortes
+ - Shiva Toutounchiavval
+ - Fernando Morales
+ - Cristian Ramon-Cortes
 
