@@ -1,0 +1,30 @@
+\section{Work Done}
+\label{sec:WorkDone}
+
+In this assignment we have implemented the PAXOS protocol 
+in Erlang in order to see some basic functionality. The simulation scenario
+consisted of a system with three \emph{Proposers} and five \emph{Acceptors}.
+This dimensions are far away from real distributed systems, but in turn it allowed
+us to understand easily the key steps of PAXOS. A graphical
+user interface combined with a terminal provided all the necessary
+information to check each step of the simulations.
+
+First, we completed the provided source code (\emph{Paxy}) following the theory
+explained in class. There were some implementation-related issues not covered
+in theory that raised our interest. For example, it was interesting to see in the
+code how \textit{Proposers} only consider messages from their current rounds, ignoring
+the rest of them in their mailboxes even they were sent by them. This gives an idea
+about the asynchronous nature of this problem. 
+
+After completing the code, we added some delay to the acceptors replies in order to simulate latency in
+the network, approaching this way more realistic conditions. In addition to this, we inserted message
+dropping in order to simulate an unreliable transport channel. This will be explained
+more in detail later.
+
+This assignment also includes some improvements of the original version. We removed the sorry 
+messages to understand how relevant are they inside the PAXOS protocol. We also
+added fault tolerancy to our processes so they could store their information in a persistent storage 
+device and recover it in case of a crash. We also separated the PAXY implementation to
+run the acceptors and the proposers on different machines. Finally, we implemented an improvement based on the proper 
+interpretation of sorry messages in order to finish PAXOS earlier. This will be discussed in detail
+along the assignment.

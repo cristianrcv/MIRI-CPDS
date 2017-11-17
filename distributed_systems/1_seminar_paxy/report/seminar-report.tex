@@ -1,0 +1,55 @@
+\documentclass[a4paper, 11pt]{article}
+
+\usepackage[utf8]{inputenc} % Change according your file encoding
+\usepackage{graphicx}
+\usepackage{url}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%% CONFIGURATION %%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{Seminar Report: PAXY Seminar}
+\author{Shiva Toutounchiavval, Fernando Morales, Cristián Ramón-Cortés}
+\date{\today{}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%% DOCUMENT %%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+  %%%%%%%%%%%% TITLE PAGE %%%%%%%%%%%%
+  \begin{titlepage}
+    \maketitle
+     \begin{figure}[b!]
+      \centering
+      \includegraphics[width=120mm]{./images/logoFIB.png}
+      %\caption{FIB logo \label{fib_logo}}
+     \end{figure}
+    \thispagestyle{empty}
+  \end{titlepage}
+
+  
+  %%%%%%%% TABLE OF CONTENTS %%%%%%%%%%  
+  \pagenumbering{roman}
+  \setcounter{tocdepth}{6}
+  \tableofcontents
+  \listoffigures
+  \listoftables
+    
+  \newpage
+
+  
+  %%%%%%%%%% CONTENTS %%%%%%%%%% 
+  \pagenumbering{arabic}
+
+  \input{./1_Introduction/main.tex}
+  \input{./2_WorkDone/main.tex}
+  \input{./3_Experiments/main.tex}
+  \input{./4_PersonalOpinion/main.tex}
+
+
+  %%%%%%%% END PAGE %%%%%%%%%
+  \newpage 
+
+\end{document}

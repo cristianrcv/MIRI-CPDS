@@ -1,0 +1,18 @@
+\section{Introduction}
+\label{sec:Introduction}
+
+The seminar is mainly about the Paxos algorithm which is used to gain consensus
+in a distributed system. Paxos is a flexible and fault tolerant protocol for
+solving the consensus problem, where participants in a distributed system
+need to agree on a common value. For the algorithm correctness it doesn’t matter
+what this value is, but it must ensure that a single one among the proposed values
+is ever chosen.
+
+The Paxos algorithm has three different processes: proposers, acceptors and learners
+although all three are often included in one single process. This seminar pretends
+to provide an implementation for the proposer and acceptor processes but excludes 
+the learner process since it is not needed to reach a consensus. 
+
+The main topic related to distributed systems that this seminar covers is about how to
+gain consensus in a distributed system under the condition of perfect communication
+and faulty processes.
